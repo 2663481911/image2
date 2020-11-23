@@ -1,0 +1,50 @@
+[
+  {
+    "sourceUrl": "http://www.cnu.cc/",
+    "sourceName": "CNU",
+    "sortUrl": "灵感热门::http://www.cnu.cc/inspirationPage/hot-0?page=0",
+    "homeList": ".work-thumbnail",
+    "homeHref": "a@href",
+    "homeTitle": "div.title@text",
+    "homeSrc": "img@abs:src",
+    "imagePageList": "#imgs_json@text",
+    "imagePageSrc": "@json:$.[*]..img",
+    "imageUrlReplaceByJS": "imgSrc = 'http://imgoss.cnu.cc/' + imgSrc;",
+    "reqMethod": "GET",
+    "cookie": "",
+    "js": "",
+    "jsMethod": ""
+  },
+  {
+    "sourceUrl": "https://www.poco.cn/",
+    "sourceName": "POCO",
+    "sortUrl": "",
+    "homeList": "",
+    "homeHref": "$.data.list[*].url",
+    "homeTitle": "$.data.list[*].title",
+    "homeSrc": "$.data.list[*].img",
+    "imagePageList": "img[data-src*=pic]",
+    "imagePageSrc": "@data-src",
+    "imageUrlReplaceByJS": "imgSrc = 'https:' + imgSrc",
+    "reqMethod": "post",
+    "cookie": "",
+    "js": "https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.18.0/js/md5.js",
+    "jsMethod": "var data_js = JSON.parse(data);\nvar req = data_js['req']\nreq['ctime'] = new Date().getTime();\nreq['param']['time_point'] = Math.ceil(req['ctime']/1000);\nreq['param']['start'] += 1;\nreq['sign_code'] = md5('poco_'+ JSON.stringify(req['param']) + '_app').substring(5, 24);\ndata_js['req'] = req;\ndata = JSON.stringify(data_js);\nJSON.stringify(data_js)"
+  },
+  {
+    "sourceUrl": "http://www.zdqx.com/html/hotlist-1.html",
+    "sourceName": "壁纸",
+    "sortUrl": "动物::http://www.zdqx.com/list-11-0-3377-0-0-0-{{page}}.html",
+    "homeList": ".listbox",
+    "homeHref": "a@abs:href",
+    "homeTitle": "div.title@text",
+    "homeSrc": "img@abs:src",
+    "imagePageList": ".img-box img[src~=(?i)\\d\\.jpg]",
+    "imagePageSrc": "@abs:src",
+    "imageUrlReplaceByJS": "imgSrc = 'http://imgoss.cnu.cc/' + imgSrc;",
+    "reqMethod": "GET",
+    "cookie": "",
+    "js": "",
+    "jsMethod": ""
+  }
+]

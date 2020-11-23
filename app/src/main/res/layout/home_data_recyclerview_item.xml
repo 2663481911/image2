@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="homeData"
+            type="com.dataBinding.image.model.HomeData" />
+    </data>
+
+        <LinearLayout
+            android:onClick="@{() -> homeData.href}"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                app:image="@{homeData.imgSrc}"
+                android:id="@+id/imageIndex_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="center"
+                android:contentDescription="TODO" />
+
+            <TextView
+                android:text="@{homeData.imgTitle}"
+                android:id="@+id/imageIndex_name"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:maxLines="1"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+</layout>

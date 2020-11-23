@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Image" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#8AA3A6</item>
+        <item name="colorPrimaryDark">#8AA3A6</item>
+        <item name="colorAccent">#8AA3A6</item>
+        <!-- Customize your theme here. -->
+    </style>
+</resources>

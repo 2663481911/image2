@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.dataBinding.image">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Image"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="m">
+
+<!--        错误：Failed resolution of: Lorg/apache/http/ProtocolVersion;-->
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+
+<!--        gallery -->
+        <activity android:name=".gallery.GalleryActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+<!--        rule -->
+        <activity android:name=".activity.RuleActivity">
+
+        </activity>
+
+<!--        file -->
+        <activity android:name=".activity.ActivityFile"></activity>
+        <activity android:name=".activity.MainActivity">
+
+        </activity>
+    </application>
+
+</manifest>
