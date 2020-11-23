@@ -12,14 +12,26 @@ import com.dataBinding.image.analyzeRule.RuleUtil
 import com.dataBinding.image.model.HomeData
 import com.dataBinding.image.model.Rule
 
+const val DATA_STATUS_NETWORK_ERROR = 404
+const val DATA_STATUS_LOAD_NORMAL = 200
+
 class GalleryViewModel(application: Application) : AndroidViewModel(application) {
     private val _photoListLive = MutableLiveData<List<HomeData>>()
     private var ruleUtil:RuleUtil? = null
+    private val _dataStatusLive = MutableLiveData<Int>()
+
+    val dataStatusLive:LiveData<Int>
+        get() {
+            return _dataStatusLive
+        }
+
     val photoListLive:LiveData<List<HomeData>>
         get() = _photoListLive
+
     private var getVale = false
     private var pageNum = 1
     var isRefresh:Boolean = true
+
 
     fun getHtml(url: String, isTopRefresh:Boolean=true){
 //      用于第一次加载把位置调到0
@@ -30,10 +42,11 @@ class GalleryViewModel(application: Application) : AndroidViewModel(application)
         if (ruleUtil == null){
             getRuleUtil()
         }
-        
+
         // 用于防止加载多次
         if (getVale) return
         getVale = true
+
         StringRequest(
             Request.Method.GET,
             url.replace("@page", pageNum.toString()),
@@ -42,7 +55,7 @@ class GalleryViewModel(application: Application) : AndroidViewModel(application)
 
                 pageNum += 1
                 val homeDataList = ruleUtil?.getHomeDataList(it)
-                Log.d("homeDataListNum", homeDataList?.size.toString())
+
                 if (!isTopRefresh) {       // 不是顶部刷新
                     val values = _photoListLive.value?.toMutableList()
                     for (value in homeDataList!!){
@@ -51,9 +64,12 @@ class GalleryViewModel(application: Application) : AndroidViewModel(application)
                     _photoListLive.value = values
                 }
                 else _photoListLive.value = homeDataList
+                _dataStatusLive.value = DATA_STATUS_LOAD_NORMAL
             },
             {
-                Log.d("getHtml", "错误${it}")
+                getVale = false
+                _dataStatusLive.value = DATA_STATUS_NETWORK_ERROR
+                it.printStackTrace()
             },
         ).also {
             VolleySingleton.getRequestQueue(getApplication()).add(it)

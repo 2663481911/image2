@@ -6,9 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".gallery.GalleryFragment">
 
+    <!--        导航栏         -->
+    <LinearLayout
+        android:background="#8AA3A6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:background="#8AA3A6"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="wrap_content"
+                android:layout_weight="3"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/set_page_num"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:maxLines="1"
+                android:inputType="number"
+                android:imeOptions="actionDone"
+                android:gravity="center"
+                android:autofillHints="页码" />
+        </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    </LinearLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

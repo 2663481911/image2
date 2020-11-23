@@ -8,25 +8,28 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.view.get
 import androidx.core.view.size
-import androidx.navigation.ui.NavigationUI
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.dataBinding.image.R
-import kotlinx.android.synthetic.main.fragment_phono.*
+import kotlinx.android.synthetic.main.fragment_photo.*
 
 
 class PhotoFragment : Fragment() {
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_phono, container, false)
+        return inflater.inflate(R.layout.fragment_photo, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val urlList:ArrayList<String> = arguments?.get("urlList") as ArrayList<String>
+
+        val galleryViewModel = ViewModelProvider(this).get(GalleryViewModel::class.java)
+//        val urlList:ArrayList<String> = arguments?.get("urlList") as ArrayList<String>
+        val href = arguments?.get("href") as String
+        val urlList = ArrayList<String>()
 
         PagerPhotoAdapter(urlList).also {
             viewPage.adapter = it

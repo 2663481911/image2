@@ -29,82 +29,23 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     app:layout_scrollFlags="scroll|enterAlways"
-                    android:layout_height="?attr/actionBarSize" />
+                    android:layout_height="?attr/actionBarSize"/>
             </com.google.android.material.appbar.AppBarLayout>
 
 
-            <LinearLayout
+
+
+            <!--            信息显示          -->
+            <fragment
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-                android:orientation="vertical"
+                android:id="@+id/fragment"
+                android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                app:defaultNavHost="true"
+                android:background="#8AA3A6"
+                app:navGraph="@navigation/navigation"/>
 
-                <!--        导航栏         -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp">
-
-                    <Spinner
-                        android:id="@+id/spinner"
-                        android:layout_width="wrap_content"
-                        android:layout_weight="3"
-                        android:layout_height="wrap_content" />
-
-<!--                    <Button-->
-<!--                        android:id="@+id/button_pre"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:background="@android:drawable/ic_media_previous"-->
-<!--                        android:layout_height="20dp" />-->
-
-                    <EditText
-                        android:id="@+id/set_page_num"
-                        android:layout_weight="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:maxLines="1"
-                        android:inputType="number"
-                        android:imeOptions="actionDone"
-                        android:gravity="center"
-                        android:text="@{String.valueOf(homeDataModel.pageNum)}"
-                        android:autofillHints="页码" />
-
-<!--                    <Button-->
-<!--                        android:id="@+id/button_next"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:background="@android:drawable/ic_media_next"-->
-<!--                        android:layout_height="20dp" />-->
-
-                </LinearLayout>
-
-                <!--            信息显示          -->
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ProgressBar
-                        android:id="@+id/top_bar"
-                        android:layout_width="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_height="wrap_content" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/home_data_recyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <ProgressBar
-                        android:id="@+id/index_progressBar"
-                        android:layout_width="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_height="wrap_content" />
-
-                </RelativeLayout>
-
-            </LinearLayout>
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

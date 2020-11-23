@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.setMargins
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -16,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.dataBinding.image.R
 import com.dataBinding.image.model.HomeData
 import kotlinx.android.synthetic.main.gallery_item.view.*
+import kotlinx.android.synthetic.main.refresh_bar.view.*
 
 
 class GalleryAdapter : ListAdapter<HomeData, MyViewHolder>(DiffCallback) {
@@ -23,6 +22,8 @@ class GalleryAdapter : ListAdapter<HomeData, MyViewHolder>(DiffCallback) {
         const val NORMAL_VIEW_TYPE = 0
         const val FOOTER_VIEW_TYPE = 1
     }
+
+    var footerViewStatus = DATA_STATUS_LOAD_NORMAL     // 用于底部状态改变
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = if (viewType == FOOTER_VIEW_TYPE)
@@ -47,6 +48,19 @@ class GalleryAdapter : ListAdapter<HomeData, MyViewHolder>(DiffCallback) {
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         if (position == itemCount - 1) {
+            with(holder.itemView){
+                when(footerViewStatus){
+                    DATA_STATUS_LOAD_NORMAL -> {
+                        footer_bar.visibility = View.VISIBLE
+                        footer_textView.text = resources.getString(R.string.normal_load)
+
+                    }
+                    DATA_STATUS_NETWORK_ERROR -> {
+                        footer_bar.visibility = View.GONE
+                        footer_textView.text = resources.getString(R.string.network_error)
+                    }
+                }
+            }
             return
         }
         Glide.with(holder.itemView)
@@ -60,9 +74,10 @@ class GalleryAdapter : ListAdapter<HomeData, MyViewHolder>(DiffCallback) {
                 urList.add(photoItem.imgSrc)
             }
             Bundle().apply {
-                putString("url", getItem(position).imgSrc)
-                putInt("pos", position)
-                putStringArrayList("urlList", urList)
+//                putString("url", getItem(position).imgSrc)
+//                putInt("pos", position)
+                putString("href", getItem(position).href)
+//                putStringArrayList("urlList", urList)
                 holder.itemView.findNavController().navigate(R.id.photoFragment, this)
             }
         }

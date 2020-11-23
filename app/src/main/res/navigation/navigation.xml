@@ -18,6 +18,6 @@
     <fragment
         android:id="@+id/photoFragment"
         android:name="com.dataBinding.image.gallery.PhotoFragment"
-        android:label="fragment_phono"
-        tools:layout="@layout/fragment_phono" />
+        android:label="fragment_photo"
+        tools:layout="@layout/fragment_photo" />
 </navigation>

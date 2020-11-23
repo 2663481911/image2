@@ -19,10 +19,7 @@
 
 <!--        gallery -->
         <activity android:name=".gallery.GalleryActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
 <!--        rule -->
@@ -31,9 +28,16 @@
         </activity>
 
 <!--        file -->
-        <activity android:name=".activity.ActivityFile"></activity>
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.ActivityFile">
 
+        </activity>
+
+<!--        main -->
+        <activity android:name=".activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

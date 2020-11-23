@@ -11,13 +11,12 @@ import com.bumptech.glide.Glide
 import com.dataBinding.image.R
 import kotlinx.android.synthetic.main.photo_view_item.view.*
 
-class PagerPhotoAdapter(val urlList: List<String>): RecyclerView.Adapter<PagePhotoViewHolder>() {
+class PagerPhotoAdapter(private val urlList: List<String>): RecyclerView.Adapter<PagePhotoViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagePhotoViewHolder {
-        // 添加控件位置
+        // 添加控件
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.photo_view_item, parent, false)
-
         return PagePhotoViewHolder(view)
     }
 
